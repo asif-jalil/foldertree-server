@@ -28,7 +28,7 @@ client.connect((err) => {
     });
   });
 
-  app.post("/addFolder/:id", (req, res) => {
+  app.patch("/addFolder/:id", (req, res) => {
     const id = req.params.id;
     const detail = req.body;
     const folder = {
@@ -41,16 +41,16 @@ client.connect((err) => {
     });
   });
 
-  app.patch("/deleteFolder/:id", (req, res) => {
-    const id = req.params.id;
-    
-    folderCollection.updateOne(
-      {},
-      {$pull: {children: { _id: ObjectID(id)}}}
-    ).then((result) => {
-      console.log(result.deletedCount > 0);
-    });
-  });
+  // app.patch("/deleteFolder/:id", (req, res) => {
+  //   const id = req.params.id;
+
+  //   folderCollection.updateOne(
+  //     {},
+  //     {$pull: {children: { _id: ObjectID(id)}}}
+  //   ).then((result) => {
+  //     console.log(result.deletedCount > 0);
+  //   });
+  // });
 });
 
 app.listen(port, () => {
