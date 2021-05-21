@@ -33,7 +33,6 @@ app.get("/", (req, res) => {
 
 client.connect((err) => {
    const folderCollection = client.db("folderTree").collection("folders");
-
    // get all folder
    app.get("/folders", (req, res) => {
       folderCollection.find({}).toArray((err, doc) => {
