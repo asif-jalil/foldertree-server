@@ -1,10 +1,10 @@
 /*
-** Title: FileTree Application
-** Description: This application will made for API for file tree
-** Author: Asif
-** Date: 16.05.2021
-** 
-*/
+ ** Title: FileTree Application
+ ** Description: This application will made for API for file tree
+ ** Author: Asif
+ ** Date: 16.05.2021
+ **
+ */
 
 // dependencies
 const express = require("express");
@@ -49,14 +49,12 @@ client.connect((err) => {
          _id: ObjectID(),
          ...detail,
       };
-      console.log(id);
       folderCollection
          .findOneAndUpdate(
             { _id: ObjectID(id) },
             { $push: { children: folder } }
-         ) 
+         )
          .then((result) => {
-            console.log(result.modifiedCount > 0);
             res.send(result.ok > 0);
          });
    });
