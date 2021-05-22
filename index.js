@@ -2,7 +2,7 @@
  ** Title: FileTree Application
  ** Description: This application will made for API for file tree
  ** Author: Asif
- ** Date: 16.05.2021
+ ** Date: 20.05.2021
  **
  */
 
@@ -13,19 +13,22 @@ const MongoClient = require("mongodb").MongoClient;
 const ObjectID = require("mongodb").ObjectID;
 require("dotenv").config();
 
-const uri = `mongodb+srv://foldertreeadmin:YHa77rr!EavEhNh@cluster0.4sath.mongodb.net/folderTree?retryWrites=true&w=majority`;
+// mongodb connection
+const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.4sath.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`;
 const client = new MongoClient(uri, {
    useNewUrlParser: true,
    useUnifiedTopology: true,
 });
 
+
+// module scaffolding
 const app = express();
 
 app.use(cors());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
-const port = 5000;
+const port = process.env.PORT || 5000;
 
 app.get("/", (req, res) => {
    res.send("Hello World!");
